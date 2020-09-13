@@ -1,13 +1,17 @@
 package com.luizviana.course.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "tb_product")
 public class Product implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -19,19 +23,18 @@ public class Product implements Serializable{
 	private Double price;
 	private String imgUrl;
 	
-	private Category category;
+	private Set<Category> categories = new HashSet<>();
 	
 	
 	public Product() {
 		
 	}
-	public Product(Long id, String name, String description, Double price, String imgUrl, Category category) {
+	public Product(Long id, String name, String description, Double price, String imgUrl) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.imgUrl = imgUrl;
-		this.category = category;
 	}
 	
 	
@@ -70,11 +73,8 @@ public class Product implements Serializable{
 		this.imgUrl = imgUrl;
 	}
 	
-	public Category getCategory() {
-		return category;
-	}
-	public void setCategory(Category category) {
-		this.category = category;
+	public Set<Category> getCategories() {
+		return categories;
 	}
 	
 	
@@ -101,9 +101,5 @@ public class Product implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 
 }
